@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="">
+   <head>
+
+<script src="js/jquery.min.js"></script>
+
+    <script>
+    function set_validator_errors(){
+        orderValidator.errorTitle = 'Por favor corrige los siguientes errores'; 
+
+        orderValidator.errorNameField = 'Listo'; 
+        orderValidator.errorNameMess = 'Introduzca su nombre'; 
+        
+        orderValidator.errorPhoneField = 'Nombre'; 
+        orderValidator.errorPhoneMess = 'Ingrese el número de teléfono correcto'; 
+        
+        orderValidator.errorAddress = 'Ingrese la dirección correcta'; 
+        orderValidator.errorRequired = 'campo requerido'; 
+        orderValidator.errorMaxLength = 'carácter máximo válido {1}'; 
+        orderValidator.errorMinLength = 'carácter mínimo válido {1}'; 
+        orderValidator.errorEmailField = 'E-mail';
+        orderValidator.errorEmail = 'Correo electrónico no válido especificado';
+        }
+    </script>
+    
+<script>
+
+
+
+    
+    setOffer: function (offerId) {
+        if (offerId == this._setOfferId) {
+            return ;
+        }
+        this._setOfferId = offerId;
+        if (offerId) {
+            var offer = app.offers[offerId];
+            var previousOffer = app.currentOffer;
+            app.currentOffer = offer;
+            var event = this.jq.Event("offerchange");
+            event.previousOffer = previousOffer;
+            event.currentOffer = app.currentOffer;
+            this.jq(document).trigger(event);
+            this.updatePage(offer);
+        } else {
+            $('input[name=country]').val('');
+        }
+    },
+    
+    updatePage: function(offer) {
+        $('x-newprice').html(offer.price);
+        $('x-oldprice').html(offer.price2);
+        $('x-currency').html(offer.currency.name);
+        $('input[name=offer], select[name=offer]').val(offer.id);
+        $('input[name=country]').val(offer.country.code);
+    },
+
+    blockForm: function() {
+        // Блокируем кнопки при отправке формы
+        $('input[type=submit]', $(this)).prop( 'disabled', true ).attr( 'disabled', true );
+        $('button', $(this)).prop( 'disabled', true ).attr( 'disabled', true );
+        app.incompleteOrder.lock = true;
+        clearTimeout(app.incompleteOrder.timer);
+    },
+
+    unblockForm: function() {
+        $('input[type=submit]', $(this)).prop( 'disabled', false ).attr( 'disabled', false );
+        $('button[type=submit]', $(this)).prop( 'disabled', false ).attr( 'disabled', false );
+        app.incompleteOrder.lock = false;
+        clearTimeout(app.incompleteOrder.timer);
+    }
+
+};
+
+
+</script><script src="js/form.validate.js"></script>
+<script src="js/form.incomplete.js"></script>
+<script src="js/main2.js"></script>
+
+
+
+      <meta name="viewport" content="width=640">
+      <link rel="stylesheet" href="css/hReset.css">
+      <meta charset="UTF-8">
+      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+      <title>Parafrix</title>
+      <link href="css/flipclock.css" rel="stylesheet">
+      <link href="css/style_1.css" rel="stylesheet">
+      <link href="css/owl.carousel.min.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="css/fontawesome.min.css">
+      <link href="css/css2.css" rel="stylesheet">
+      <link rel="stylesheet" href="css/jquery.toastmessage.css">
+      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="css/jquery.modal.min.css">
+      <link rel="stylesheet" href="css/backcall.css">
+   </head>
+   <body class="pluginLeave">
+      <div class="wrapper">
+         <div class="popup__wrapper">
+            <div class="popup__block">
+               <div class="popup__close" onclick="document.querySelector('.popup__wrapper').style.display='none'"></div>
+               <div class="form-block__wrap">
+                  <div class="form-block">
+                     <div class="form-block__one"> la fuerza de la naturaleza<br>protegiendo tu salud </div>
+                     <div class="form-block__zakazhite"> Ordena <b class="purp"> Parafrix</b> ahora <br>para obtener un descuento <b> 50%</b> </div>
+                     <div class="timer-block">
+                        <p class="timer__title"> <span> Apresúrate</span>, la oferta termina dentro: </p>
+                        <div class="timer"></div>
+                     </div>
+                     <div class="price-block">
+                        <div class="price-block__left"> <span class="cena"> Precio: </span> <span class="price-block__price displayCurrentPriceNoCyr al-raw-cost"><x-newprice>140</x-newprice></span> <span class="price-block__priceCurrency displayCurrentCurrency al-raw-currency"><x-currency>SOL</x-currency></span> </div>
+                        <div class="price-block__right">
+                           <div class="vmesto"> en lugar de </div>
+                           <span class="starayaCena"> Precio anterior: </span> <span class="price-block__oldPrice displayPrevPriceNoCyr al-raw-cost-promo"><x-oldprice>280</x-oldprice></span> <span class="price-block__oldPriceCurrency displayCurrentCurrency al-raw-currency"><x-currency>SOL</x-currency></span> 
+                        </div>
+                     </div>
+                     <form method="post" action="https://healthbestblog.space/cpatl/api.php" class="form orderForm al-form">
+                           
+    <select name="offer" class="form-control country_chang" style="display: none;">
+        <option data-country-code="PE" selected="selected" value="19812">
+            Перу        </option>
+    </select>
+
+                            <div class="input-wrapper">
+                           <input type="text" name="name" id="name" placeholder="Nombre" required>
+                           <label for="name"></label>
+                        </div>
+                        <div class="input-wrapper">
+                           <input type="tel" name="phone" id="phone" placeholder="Teléfono" required>
+                           <label for="phone"></label>
+                        </div>
+                        <button type="submit" class="btn form-btn"> Ordenar Parafrix</button> 
+                        <p class="ppaa" style="text-align: center; font-size: 12px; margin-top: 25px; padding-bottom: 10px"></p>
+                         <input type="hidden" name="stream_hid" value="EZyFvbZq">
+      <input type="hidden" name="offer_id" value="4917">
+
+      
+      <input type="hidden" name="country" value="PE"> 
+
+      <input type="hidden" name="sid1" value="alex">
+      <input type="hidden" name="sid2" value="alex2">
+      <input type="hidden" name="sid3" value="alex3">
+      <input type="hidden" name="redirect_url" value="https://amazinghealth.github.io/germitox-ita/success/index.html">
+                     </form>
+                     <div class="popup__product"> <img src="images/product-full.png" alt=""> </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="top-line">
+            <div class="inner">
+               <div class="mob-button">
+                  <div class="mob-button__line"></div>
+                  <div class="mob-button__line"></div>
+                  <div class="mob-button__line"></div>
+               </div>
+               <nav class="nav"> <a href="#doing"> ¿Por qué Parafrix?</a> <a href="#sostav"> Composición de la crema</a>  <a href="#zakaz"> Comprar Parafrix</a> </nav>
+               <div class="top-line__call" data-click="true" data-target=".popup__wrapper"> <img src="images/phone.png" alt=""> <span> ¡Comprar ahora!</span> </div>
+            </div>
+         </div>
+         <section class="main-block">
+            <div class="inner">
+               <div class="main-block__flexArea">
+                  <img src="images/mob.png" class="insHide" alt=""> 
+                  <div class="form-block__wrap">
+                     <div class="main-block__title"> CREMA CONTRA DOLORES ARTICULARES </div>
+                     <div class="form-block">
+                        <div class="right-logoBlock insHide"> <img src="images/mob-right-logo.png" alt=""> </div>
+                        <div class="form-block__one"> la fuerza de la naturaleza<br>protegiendo tu salud </div>
+                        <div class="form-block__two"> Ordena <b> Parafrix</b> ahora<br>para obtener un descuento <b> 50%</b> </div>
+                        <div class="form-block__zakazhite"> Ordenar <b class="purp"> Parafrix</b> ahora <br>para obtener un descuento <b> 50%</b> </div>
+                        <div class="timer-block">
+                           <p class="timer__title"> <span> Apresúrate</span>, la oferta termina dentro: </p>
+                           <div class="timer"></div>
+                        </div>
+                        <div class="price-block">
+                           <div class="price-block__left"> <span class="cena"> Precio: </span> <span class="price-block__price displayCurrentPriceNoCyr al-raw-cost"><x-newprice>140</x-newprice></span> <span class="price-block__priceCurrency displayCurrentCurrency al-raw-currency"><x-currency>SOL</x-currency></span> </div>
+                           <div class="price-block__right">
+                              <div class="vmesto"> en lugar de </div>
+                              <span class="starayaCena"> Precio anterior: </span> <span class="price-block__oldPrice displayPrevPriceNoCyr al-raw-cost-promo"><x-oldprice>280</x-oldprice></span> <span class="price-block__oldPriceCurrency displayCurrentCurrency al-raw-currency"><x-currency>SOL</x-currency></span> 
+                           </div>
+                        </div>
+                        <form method="post" action="https://healthbestblog.space/cpatl/api.php" class="form orderForm al-form">
+                              
+    <select name="offer" class="form-control country_chang" style="display: none;">
+        <option data-country-code="PE" selected="selected" value="19812">
+            Перу        </option>
+    </select>
+
+                               <div class="input-wrapper">
+                              <input type="text" name="name" id="name2" placeholder="Nombre" required>
+                              <label for="name2"></label>
+                           </div>
+                           <div class="input-wrapper">
+                              <input type="tel" name="phone" id="phone2" placeholder="Teléfono" required>
+                              <label for="phone2"></label>
+                           </div>
+                           <button type="submit" class="btn form-btn"> Ordenar Parafrix </button> 
+                           <p class="ppaa" style="text-align: center; font-size: 12px; margin-top: 25px; padding-bottom: 10px"></p>
+                                  <input type="hidden" name="stream_hid" value="EZyFvbZq">
+      <input type="hidden" name="offer_id" value="4917">
+
+      
+      <input type="hidden" name="country" value="PE"> 
+
+      <input type="hidden" name="sid1" value="alex">
+      <input type="hidden" name="sid2" value="alex2">
+      <input type="hidden" name="sid3" value="alex3">
+      <input type="hidden" name="redirect_url" value="https://amazinghealth.github.io/germitox-ita/success/index.html">
+                        </form>
+                     </div>
+                     <p class="mk-note" style=""> El precio de envío depende de la ciudad donde usted vive.</p>
+                     <div class="colvo">
+                        Al <script type="text/javascript">var ld=new Date(); document.write(ld.toLocaleDateString()); </script> <script src="js/timer.min.js"></script> se han ordenado<br><span><span class="packCount"></span> paquetes</span> 
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         <section class="why">
+            <div class="inner">
+               <div class="title why__title"> ¿De dónde viene el dolor articular? </div>
+               <div class="why__items">
+                  <div class="why__item">
+                     <div class="why__item-block">
+                        <div class="why__item-block-C"></div>
+                        <p class="why__item-title"> Alteración del metabolismo</p>
+                        <p class="why__item-text"> la nodación conduce a<br>los procesos degenerativos </p>
+                     </div>
+                     <div class="why__item-block">
+                        <div class="why__item-block-C"></div>
+                        <p class="why__item-title"> Exceso de peso</p>
+                        <p class="why__item-text"> carga excesiva en<br>el cuerpo a causa de la obesidad </p>
+                     </div>
+                     <div class="why__item-block">
+                        <div class="why__item-block-C"></div>
+                        <p class="why__item-title"> Daños<br>traumáticos </p>
+                        <p class="why__item-text"> movimientos bruscos,<br>caídas, choques directos </p>
+                     </div>
+                     <div class="why__item-block">
+                        <div class="why__item-block-C"></div>
+                        <p class="why__item-title"> Disposición genética</p>
+                        <p class="why__item-text"> fallo del funcionamiento articular<br>desgaste rápido </p>
+                     </div>
+                  </div>
+                  <div class="why__item"></div>
+                  <div class="why__item">
+                     <div class="why__item-block">
+                        <div class="why__item-block-C"></div>
+                        <p class="why__item-title"> Cargas excesivas</p>
+                        <p class="why__item-text"> trabajo físico duro<br>deportes<br>fuertes </p>
+                     </div>
+                     <div class="why__item-block">
+                        <div class="why__item-block-C"></div>
+                        <p class="why__item-title"> Cambios relacionados con la edad</p>
+                        <p class="why__item-text"> edad avanzada y<br>desequilibrio hormonal </p>
+                     </div>
+                     <div class="why__item-block">
+                        <div class="why__item-block-C"></div>
+                        <p class="why__item-title"> Enfermedades crónicas</p>
+                        <p class="why__item-text"> infecciones agudas<br>en<br>el cuerpo </p>
+                     </div>
+                     <div class="why__item-block">
+                        <div class="why__item-block-C"></div>
+                        <p class="why__item-title"> Procesos autoimmunes</p>
+                        <p class="why__item-text"> reacción anormal de la inmunidad<br>y funcionamiento de los anticuerpos </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+        
+
+         <section class="numberTwo">
+            <div class="inner">
+               <div class="numberTwo__items">
+                  <div class="numberTwo__item">
+                     <p> Las fuentes naturales de glucosaminoglucanos, que contiene Parafrix, tienen una capacidad máxima y biodisponibilidad. <b> Tienen un efecto positivo instantáneo en las articulaciones.</b> . Eliminan rápidamente los síntomas de la inflamación (dolor, hinchazón, alteración de la movilidad), previenen los procesos disruptivos en el tejido cartilaginoso, limpian las fibras musculares dañadas y los vasos sanguíneos. </p>
+                     <p> El conjunto antiinflamatorio de Parafrix tiene <b> dos efectos terapéuticos</b>: </p>
+                     <div class="numberTwo__item-cubes owl-carousel">
+                        <div class="numberTwo__item-cube">
+                           <div class="numberTwo__item-cube-title"> Efecto</div>
+                           <div class="numberTwo__item-cube-text"> instantáneo sobre las estructuras dañadas de la bolsa sinovial, tendones y músculos </div>
+                        </div>
+                        <div class="numberTwo__item-cube">
+                           <div class="numberTwo__item-cube-title"> Mejora</div>
+                           <div class="numberTwo__item-cube-text"> adicional de los vasos sanguíneos, los elementos de colágeno y la elastina de la piel </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="step">
+            <div class="inner">
+               <div class="step__block">
+                  <div class="step__block-title"> Efecto gradual de Parafrix</div>
+                  <p> ALIVIA el dolor y quita hinchazón</p>
+                  <p> NORMALIZA los procesos metabólicos en la cápsula articular </p>
+                  <p> PREVIENE el adelgazamiento del cartílago y el crecimiento de los picos óseos </p>
+                  <p> RESTABLECE las propiedades de absorción del cartílago</p>
+                  <p> AUMENTA el tono de los vasos sanguíneos y el nivel de hidratación de la piel </p>
+                  <p> MEJORA las funciones motoras de las articulaciones dañadas</p>
+               </div>
+            </div>
+         </section>
+         <section class="splitArea">
+            <div class="inner">
+               <div class="splitArea__items">
+                  <div class="splitArea__item">
+                     <div class="timer-block">
+                        <p class="timer__title"> Apresúrate, la oferta termina dentro: </p>
+                        <div class="timer"></div>
+                     </div>
+                  </div>
+                  <div class="splitArea__item"> <img src="images/splitArea-img.png" alt=""> </div>
+                  <div class="splitArea__item">
+                     <div class="price-block">
+                        <div class="price-block__left"> <span class="price-block__price displayCurrentPriceNoCyr al-raw-cost"><x-newprice>140</x-newprice></span> <span class="price-block__priceCurrency displayCurrentCurrency al-raw-currency"><x-currency>SOL</x-currency></span> </div>
+                        <div class="price-block__right">
+                           <div class="vmesto"> en lugar de </div>
+                           <span class="price-block__oldPrice displayPrevPriceNoCyr al-raw-cost-promo"><x-oldprice>280</x-oldprice></span> <span class="price-block__oldPriceCurrency displayCurrentCurrency al-raw-currency"><x-currency>SOL</x-currency></span> 
+                        </div>
+                     </div>
+                  </div>
+                  <div class="splitArea__item"> <a href="#zakaz" class="btn"> ORDENAR PARAFRIX</a> </div>
+               </div>
+            </div>
+         </section>
+         <section class="six" id="doing">
+            <div class="inner">
+               <div class="six_block">
+                  <div class="title six__title"> 6 Principales ventajas</div>
+                  <div class="six__items">
+                     <div class="six__item">1</div>
+                     <div class="six__item">
+                        <p class="six__item-title"> Efecto completo</p>
+                        <p class="six__item-text"> efecto analgésico y antiséptico </p>
+                     </div>
+                  </div>
+                  <div class="six__items">
+                     <div class="six__item">2</div>
+                     <div class="six__item">
+                        <p class="six__item-title"> Absorción inmediata</p>
+                        <p class="six__item-text"> el efecto se nota dentro de 30 minutos después de la aplicación </p>
+                     </div>
+                  </div>
+                  <div class="six__items">
+                     <div class="six__item">3</div>
+                     <div class="six__item">
+                        <p class="six__item-title"> Versatilidad</p>
+                        <p class="six__item-text"> cura diversas enfermedades de las articulaciones </p>
+                     </div>
+                  </div>
+                  <div class="six__items">
+                     <div class="six__item">4</div>
+                     <div class="six__item">
+                        <p class="six__item-title"> Prevención</p>
+                        <p class="six__item-text"> previene el desarrollo de enfermedades en las articulaciones </p>
+                     </div>
+                  </div>
+                  <div class="six__items">
+                     <div class="six__item">5</div>
+                     <div class="six__item">
+                        <p class="six__item-title"> Belleza</p>
+                        <p class="six__item-text"> elimina la flacidez de la piel y aumenta el nivel de su protuberancia </p>
+                     </div>
+                  </div>
+                  <div class="six__items">
+                     <div class="six__item">6</div>
+                     <div class="six__item">
+                        <p class="six__item-title"> Naturalidad</p>
+                        <p class="six__item-text"> más de 25 componentes medicinales naturales </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="sostav" id="sostav">
+            <div class="inner">
+               <div class="title sostav__title"> Composición natural</div>
+               <div class="sostav__slider owl-carousel">
+                  <div class="sostav__slide">
+                     <div class="sostav__slide-title"> <b> MENTOL</b></div>
+                     <div class="sostav__slide-text"> Actúa como un analgésico para aliviar dolores musculares, articulares y postraumáticos.</div>
+                  </div>
+                  <div class="sostav__slide">
+                     <div class="sostav__slide-title"> <b> ÁRNICA</b></div>
+                     <div class="sostav__slide-text"> Remedio para rebajar la inflamación e hinchazón.</div>
+                  </div>
+                  <div class="sostav__slide">
+                     <div class="sostav__slide-title"> <b> ROMERO Y CIPRÉS</b></div>
+                     <div class="sostav__slide-text"> El primero se utiliza para el tratamiento de dolores musculares. Mientas que el ciprés es efectivo en el tratamiento de calambres o dolores de tipo muscular.</div>
+                  </div>
+                  <div class="sostav__slide">
+                     <div class="sostav__slide-title"> <b> GROSELLO NEGRO Y CALÉNDULA</b></div>
+                     <div class="sostav__slide-text"> Destaca ante todo por sus virtudes antiinflamatorias y antirreumáticas. La caléndula es una de las plantas mejor valoradas para la reducción de inflamación, siendo además calmante y analgésico tanto interno como externo.</div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="sposob">
+            <div class="inner">
+               <div class="title sposob__title"> Forma de administración y duración* </div>
+               <div class="sposob__items">
+                  <div class="sposob__item">
+                     <div class="sposob__item-title"> APLICAR</div>
+                     <div class="sposob__item-desc"> 3 veces al día</div>
+                  </div>
+                  <div class="sposob__item"></div>
+                  <div class="sposob__item">
+                     <div class="sposob__item-title"> 1 mes</div>
+                     <div class="sposob__item-desc"> duración del tratamiento</div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         
+         <section class="main-block" id="zakaz">
+            <div class="inner">
+               <div class="main-block__flexArea">
+                  <img src="images/mob.png" class="insHide bottIns" alt=""> 
+                  <div class="form-block__wrap">
+                     <div class="main-block__title"> CREMA GEL</div>
+                     <div class="form-block" id="mob-zakaz">
+                        <div class="right-logoBlock insHide"> <img src="images/mob-right-logo.png" alt=""> </div>
+                        <div class="form-block__one"> la fuerza de la naturaleza<br>protegiendo tu salud </div>
+                        <div class="form-block__two"> Ordena <b> Parafrix</b> ahora<br>para obtener un descuento <b> 50%</b> </div>
+                        <div class="form-block__zakazhite"> Ordena <b class="purp"> Parafrix</b> ahora <br>para obtener un descuento <b> 50%</b> </div>
+                        <div class="timer-block">
+                           <p class="timer__title"> <span> Apresúrate</span>, la oferta termina dentro: </p>
+                           <div class="timer"></div>
+                        </div>
+                        <div class="price-block">
+                           <div class="price-block__left"> <span class="cena"> Precio: </span> <span class="price-block__price displayCurrentPriceNoCyr al-raw-cost"><x-newprice>140</x-newprice></span> <span class="price-block__priceCurrency displayCurrentCurrency al-raw-currency"><x-currency>SOL</x-currency></span> </div>
+                           <div class="price-block__right">
+                              <div class="vmesto"> en vez de</div>
+                              <span class="starayaCena"> Precio anterior: </span> <span class="price-block__oldPrice displayPrevPriceNoCyr al-raw-cost-promo"><x-currency>SOL</x-currency></span> <span class="price-block__oldPriceCurrency displayCurrentCurrency al-raw-currency"><x-currency>SOL</x-currency></span> 
+                           </div>
+                        </div>
+                        <form method="post" action="https://healthbestblog.space/cpatl/api.php" class="form orderForm al-form">
+                             
+    <select name="offer" class="form-control country_chang" style="display: none;">
+        <option data-country-code="PE" selected="selected" value="19812">
+            Перу        </option>
+    </select>
+
+                               <div class="input-wrapper">
+                              <input type="text" name="name" id="name3" placeholder="Nombre" required>
+                              <label for="name3"></label>
+                           </div>
+                           <div class="input-wrapper">
+                              <input type="tel" name="phone" id="phone3" placeholder="Teléfono" required>
+                              <label for="phone3"></label>
+                           </div>
+                           <button type="submit" class="btn form-btn" data-leadenec-3="submit"> Ordenar Parafrix </button> 
+                           <p class="ppaa" style="text-align: center; font-size: 12px; margin-top: 25px; padding-bottom: 10px"></p>
+                                  <input type="hidden" name="stream_hid" value="EZyFvbZq">
+      <input type="hidden" name="offer_id" value="4917">
+
+      
+      <input type="hidden" name="country" value="PE"> 
+
+      <input type="hidden" name="sid1" value="alex">
+      <input type="hidden" name="sid2" value="alex2">
+      <input type="hidden" name="sid3" value="alex3">
+      <input type="hidden" name="redirect_url" value="https://amazinghealth.github.io/germitox-ita/success/index.html">
+                        </form>
+                     </div>
+                     <p class="mk-note"> El precio de envío depende de la ciudad donde usted vive.</p>
+                     <div class="colvo">
+                        Al <script type="text/javascript">var ld=new Date(); document.write(ld.toLocaleDateString()); </script> se han ordenado<br><span><span class="packCount"></span> paquetes</span> 
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </div>
+
+      <script src="js/jquery.min_1.js"></script> <script src="js/flipclock.min.js"></script> <script src="js/owl.carousel.min.js"></script> <script src="js/script.js"></script> 
+   <center style="margin: 30px auto"><p>OOO "OSTROV PRODAZH" OGRN: 1197746695530 VAT: 7708365555</p>
+<p>129090, Moscow, pereulok Zhivarev, house 8, stroenie 3, flat 16 email: ostrov.prodazh@mail.com Skype: ostrov.prodazh@mail.com</p> 
+
+
+    
+            <p class="conf-link doclinks">
+        <a class="nav-link" href="" onclick="window.open('/policy_en.php'); return false;">Privacy Policy</a>
+          |
+        <a class="nav-link" href="" onclick="window.open('/terms_en.php'); return false;">Terms & Conditions</a>
+      </p>
+      
+    
+</center>
+   </body>
+</html>
